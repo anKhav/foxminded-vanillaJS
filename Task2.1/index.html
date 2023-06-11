@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Color generator</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    main{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+    }
+    .button{
+        padding: 10px 20px;
+        background-color: white;
+        border: 1px solid #000000;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all .3s;
+    }
+    .button:hover{
+        transform: scale(1.1);
+        transition: all .3s;
+    }
+</style>
+<body>
+    <main id="bg-box">
+        <h1 id="bg-title"></h1>
+        <button id="btn-hex" class="button">HEX Color</button>
+        <button id="btn-rgb" class="button">RGB Color</button>
+        <button id="btn-rgba" class="button">RGBA Color</button>
+    </main>
+    <script src="index.js" defer></script>
+</body>
+</html>
