@@ -1,0 +1,45 @@
+/*Reset and normalize styles*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+li{
+    list-style: none;
+}
+/*Reset and normalize styles*/
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+.list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.tab{
+    padding: 10px 15px;
+    background-color: #FF3D00;
+    border-radius: 4px;
+    color: white;
+}
+.button{
+    margin-top: 40px;
+    background-color: rgba(255, 61, 0, 0.5);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    transition: all .4s;
+}
+.button:hover{
+    background-color: rgba(255, 61, 0, 1);
+    transition: all .4s;
+}
