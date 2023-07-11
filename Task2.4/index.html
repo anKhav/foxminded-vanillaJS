@@ -27,11 +27,12 @@
             />
         </fieldset>
         <fieldset class="form__last-name">
-            <label class="fieldset__title" for="last-name">Last name</label>
+            <label class="fieldset__title" for="last-name">Last name*</label>
             <input
                     type="text"
                     id="last-name"
                     placeholder="enter your last name"
+                    required
             />
         </fieldset>
         <fieldset class="form__email">
@@ -60,22 +61,17 @@
         </fieldset>
         <fieldset class="form__gender">
             <legend class="fieldset__title">Gender</legend>
-            <div>
-                <input name="gender" value="male" type="radio" id="gender-male" />
-                <label for="gender-male">Male</label>
+            <div class="genders">
+                <input type="radio" id="male" name="radio-group" checked>
+                <label for="male">Male</label>
             </div>
-            <div>
-                <input
-                        name="gender"
-                        value="female"
-                        type="radio"
-                        id="gender-female"
-                />
-                <label for="gender-female">Female</label>
+            <div class="genders">
+                <input type="radio" id="female" name="radio-group">
+                <label for="female">Female</label>
             </div>
         </fieldset>
         <fieldset class="form__hobbies">
-            <legend class="fieldset__title">Gender</legend>
+            <legend class="fieldset__title">Hobbies</legend>
             <div class="hobbies">
                 <input type="checkbox" id="hobbies-music" />
                 <span class="checkmark"></span>
@@ -108,22 +104,22 @@
             />
         </fieldset>
         <fieldset class="form__income">
-            <label class="fieldset__title" for="income">Income</label>
-            <div class="wrapper range">
-                <input
-                        placeholder="Employed"
-                        type="range"
-                        id="income"
-                        min="0"
-                        max="60"
-                        step="5"
-                        value="20"
-                >
-                <div id="over">
-                    <div class="over__content"></div>
+            <label class="fieldset__title">Income</label>
+                <div class="range">
+                    <div class="range__content">
+                        <div class="range__slider">
+                            <div class="range__slider-line" id="range-line"></div>
+                        </div>
+
+                        <div class="range__thumb" id="range-thumb">
+                        </div>
+
+                        <input type="range" class="range__input" id="slider" min="0" max="100" value="50" step="1">
+                    </div>
+                    <div class="range__value">
+                        <span class="range__value-number" id="range-number">50</span>
+                    </div>
                 </div>
-                <div class="age"><span id="income-value">20</span>K</div>
-            </div>
         </fieldset>
         <fieldset class="form__picture">
             <label class="fieldset__title" for="picture"
@@ -132,10 +128,12 @@
             <input
                     class="input-file"
                     type="file"
+                    value=""
                     id="picture"
                     accept="image/png, image/gif, image/jpeg, image/svg, image/webp"
             />
-            <p>No file choosing</p>
+            <div class="placeholder">Choose file</div>
+            <p id="placeholder-label">No file chosen</p>
         </fieldset>
         <fieldset class="form__age">
             <label class="fieldset__title" for="age">Age</label>
@@ -147,9 +145,11 @@
         </fieldset>
     </div>
     <div class="form__footer">
-        <button class="form__button" type="submit">Create</button>
+        <button id="button-confirm" class="form__button" type="submit">Create</button>
     </div>
 </form>
 <script src="index.js" defer></script>
+<script src="validator.js" defer></script>
+<script src="validation.js" defer></script>
 </body>
 </html>
