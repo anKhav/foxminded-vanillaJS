@@ -4,15 +4,18 @@ const inputEmail = document.querySelector('#email')
 const inputPassword = document.querySelector('#password')
 const inputPasswordConfirm = document.querySelector('#password-confirm')
 const button = document.querySelector('#button-confirm')
-const form = document.querySelector('.form')
+
 
 const validator = new Validator()
 
+
+// Visualization correct/incorrect data //
 const toggleCorrectInputVisuals = (inputDOM, data) => {
-    if (data.correct && !inputDOM.classList.contains('input--correct')) {
-        inputDOM.classList.add('input--correct')
+    const correctInputClass = 'input--correct'
+    if (data.correct && !inputDOM.classList.contains(correctInputClass)) {
+        inputDOM.classList.add(correctInputClass)
     } else if (!data.correct) {
-        inputDOM.classList.remove('input--correct')
+        inputDOM.classList.remove(correctInputClass)
     }
 }
 
@@ -24,51 +27,96 @@ const insertErrorDOMElement = (inputDOM, data) => {
         errorElement.remove()
     }
 }
+// Visualization correct/incorrect data //
+
+
+// Initial validation //
+(() => {
+    const emailValidationData = validator.isEmail(inputEmail.value)
+    const passwordValidationData = validator.isCorrectPassword(inputPassword.value)
+    const passwordComparisonValidationData = validator.isEqualPasswordEntries(inputPassword.value, inputPasswordConfirm.value)
+    const firstNameValidationData = validator.isRequired(inputFirstName)
+    const lastNameValidationData = validator.isRequired(inputLastName)
+    toggleCorrectInputVisuals(inputFirstName, firstNameValidationData)
+    toggleCorrectInputVisuals(inputLastName, lastNameValidationData)
+    toggleCorrectInputVisuals(inputEmail, emailValidationData)
+    toggleCorrectInputVisuals(inputPassword, passwordValidationData)
+    toggleCorrectInputVisuals(inputPasswordConfirm, passwordComparisonValidationData)
+})()
+// Initial validation //
+
+
 const commonHandler = (e) => {
     e.preventDefault()
     const data = []
-    const emailRes = validator.isEmail(inputEmail.value)
-    const passwordRes = validator.isCorrectPassword(inputPassword.value)
-    const passwordsComparsion = validator.isEqualPasswordEntries(inputPassword.value, inputPasswordConfirm.value)
+    const emailValidationData = validator.isEmail(inputEmail.value)
+    const passwordValidationData = validator.isCorrectPassword(inputPassword.value)
+    const passwordComparisonValidationData = validator.isEqualPasswordEntries(inputPassword.value, inputPasswordConfirm.value)
+    const firstNameValidationData = validator.isRequired(inputFirstName)
+    const lastNameValidationData = validator.isRequired(inputLastName)
     data.push({
         input:inputEmail,
-        data:emailRes
+        data:emailValidationData
     })
     data.push({
         input:inputPassword,
-        data:passwordRes
+        data:passwordValidationData
     })
     data.push({
         input:inputPasswordConfirm,
-        data:passwordsComparsion
+        data:passwordComparisonValidationData
     })
-    console.log(e.currentTarget);
-    const formData = new FormData(e.currentTarget)
-    console.log(formData);
+    data.push({
+        input:inputFirstName,
+        data:firstNameValidationData
+    })
+    data.push({
+        input:inputLastName,
+        data:lastNameValidationData
+    })
+    const notValidDataArray = data.filter((item) => item.data.correct === false)
+    console.log(notValidDataArray);
 }
-inputPassword.addEventListener('input', (e) => {
+
+inputPassword.addEventListener('input', () => {
     const data = validator.isCorrectPassword(inputPassword.value)
     toggleCorrectInputVisuals(inputPassword, data)
 })
-inputPassword.addEventListener('change', (e) => {
+inputPassword.addEventListener('change', () => {
     const data = validator.isCorrectPassword(inputPassword.value)
     insertErrorDOMElement(inputPassword, data)
 })
-inputEmail.addEventListener('input', (e) => {
+
+
+inputEmail.addEventListener('input', () => {
     const data = validator.isEmail(inputEmail.value)
     toggleCorrectInputVisuals(inputEmail, data)
 })
-inputEmail.addEventListener('change', (e) => {
+inputEmail.addEventListener('change', () => {
     const data = validator.isEmail(inputEmail.value)
     insertErrorDOMElement(inputEmail, data)
 })
-inputPasswordConfirm.addEventListener('input', (e) => {
+
+
+inputPasswordConfirm.addEventListener('input', () => {
     const data = validator.isEqualPasswordEntries(inputPassword.value, inputPasswordConfirm.value)
     toggleCorrectInputVisuals(inputPasswordConfirm, data)
 
 })
-inputPasswordConfirm.addEventListener('change', (e) => {
+inputPasswordConfirm.addEventListener('change', () => {
     const data = validator.isEqualPasswordEntries(inputPasswordConfirm.value)
     insertErrorDOMElement(inputPasswordConfirm, data)
 })
+
+
+inputFirstName.addEventListener('input', () => {
+    const data = validator.isRequired(inputFirstName)
+    toggleCorrectInputVisuals(inputFirstName, data)
+})
+inputLastName.addEventListener('input', () => {
+    const data = validator.isRequired(inputLastName)
+    toggleCorrectInputVisuals(inputLastName, data)
+})
+
+
 button.addEventListener('click',commonHandler)
