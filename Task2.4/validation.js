@@ -54,7 +54,6 @@ const submitHandler = (e) => {
     const data = commonValidator()
     data.forEach(item => toggleStyles(item.input, item.data))
     const notValidInputs = data.filter(item => !item.data.correct)
-    console.log(notValidInputs.length === 0);
     notValidInputs.length === 0 && console.log('Fetch some data')
 }
 
