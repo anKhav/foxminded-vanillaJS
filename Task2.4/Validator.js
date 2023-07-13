@@ -30,7 +30,7 @@ class Validator {
         if (HTMLInputElement.required && HTMLInputElement.value.length === 0) {
             return this.#generateValidationResultData(false, 'Input is required')
         }
-        return this.#generateValidationResultData(true, 'Input is not required')
+        return this.#generateValidationResultData(true, 'Input is not required or you provide value to it!')
     }
     isDataDDMMYYYY (date){
         if (this.#ddmmyyyyRegex.test(date)){

@@ -435,8 +435,9 @@ input:checked ~ .checkmark:before {
     background-color: var(--main-color);
     text-align: center;
 }
-input[class='input--correct']:focus{
-    border-color: green;
+input[class='input--not-valid']{
+    border-color: red;
+    border-width: 2px;
 }
 
 .error-message{
