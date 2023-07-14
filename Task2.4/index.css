@@ -177,16 +177,6 @@ input:checked ~ .checkmark:before {
     -webkit-transform: scale(1);
     transform: scale(1);
 }
-
-/* Custom radio buttons*/
-
-/********** Range Input Styles **********/
-
-/* Custom input range */
-
-*{
-    box-sizing: border-box;
-}
 .range {
     height: 64px;
     width: 100%;
@@ -272,9 +262,6 @@ input:checked ~ .checkmark:before {
 .range__input::-webkit-slider-thumb:hover {
     cursor: pointer;
 }
-/********** Range Input Styles **********/
-
-
 
 .fieldset__title {
     padding: 0;
@@ -393,8 +380,6 @@ input:checked ~ .checkmark:before {
     position: absolute;
     left: 15px;
     top: 35px;
-    /*width: 120px;*/
-    /*height: 50px;*/
     background-color: #77767E;
     border-radius: 8px;
     padding: 10px 20px;

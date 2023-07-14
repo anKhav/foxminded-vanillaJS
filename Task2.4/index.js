@@ -37,7 +37,6 @@ const placeholderLabel = document.querySelector('#placeholder-label')
 const updateInputFileVisuals = () => {
     const isFileSelected = !!inputFile.value
     if (isFileSelected) {
-        console.log(placeholderLabel);
         inputPlaceholder.innerText = '✓'
         placeholderLabel.innerText = 'Profile Picture is chosen'
         inputPlaceholder.classList.add('input-file--selected')
