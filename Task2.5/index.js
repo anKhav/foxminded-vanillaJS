@@ -65,3 +65,4 @@ const init = async () => {
     forecast.insertTemplate()
 }
 init()
+init()
