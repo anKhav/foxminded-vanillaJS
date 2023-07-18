@@ -1,0 +1,149 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+.header{
+    color: #D64200;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.header span{
+    background-color: #D64200;
+    color: white;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.form__input-wrapper{
+    padding: 15px 20px;
+    border: 1px solid #ABABAB;
+    border-radius: 10px;
+    position: relative;
+}
+.form__input{
+    width: 100%;
+}
+.form__button{
+    border: 1px solid #77767E;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #77767E;
+    cursor: pointer;
+    transition: .4s;
+}
+.form__button:hover{
+    color: white;
+    background-color: #D64200;
+    border-color: #D64200;
+    transition: .4s;
+}
+.form__input-clear{
+    position: absolute;
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+    right: 20px;
+    top: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+
+}
+.main{
+    margin-top: 40px;
+}
+.loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.city-wrapper{
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+.weather-state{
+    text-transform: capitalize;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.today{
+    padding: 20px;
+    background-color: rgba(214, 66, 0, 0.51);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    gap: 30px;
+}
+.today__day, .today__night{
+    position: relative;
+    font-weight: bold;
+}
+.today__day{
+    padding-top: 30px;
+}
+.today__night{
+    padding-bottom: 30px;
+}
+.today__day::before, .today__night::before{
+    font-weight: 400;
+    position: absolute;
+    font-size: 14px;
+    color: inherit;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.today__day::before{
+    content: 'Day';
+    top: 0;
+}
+.today__night::before{
+    content: 'Night';
+    bottom: 0;
+}
+.icon{
+    position: relative;
+    width: 100px;
+}
+.weather-icon, .foxminded-icon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.foxminded-icon{
+    left: 0;
+}
+.weather-icon{
+    width: 80px;
+    height: 80px;
+    top: 30px;
+    right: 0;
+    z-index: 20;
+}
+.today__night{}
+.today__temperatures{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
