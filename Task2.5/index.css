@@ -7,10 +7,21 @@
 }
 body{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.forecast-widget{
+    width: auto;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid black;
+    border-radius: 10px;
+    min-width: 375px;
 }
 .header{
     color: #D64200;
@@ -33,6 +44,7 @@ body{
     border: 1px solid #ABABAB;
     border-radius: 10px;
     position: relative;
+    width: 100%;
 }
 .form__input{
     width: 100%;
@@ -141,9 +153,34 @@ body{
     right: 0;
     z-index: 20;
 }
-.today__night{}
 .today__temperatures{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+.week-forecast{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.day{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #77767E;
+    width: 100%;
+    padding: 10px 0;
+}
+.day__title{
+    font-size: 17px;
+    text-transform: uppercase;
+}
+.day__state{
+    text-transform: capitalize;
+}
+.error{
+    text-transform: capitalize;
 }
