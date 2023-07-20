@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="forecast-widget">
+        <header class="header">
+            <h1 class="header__title">
+                foxmind<span>ed</span>
+            </h1>
+        </header>
+        <main>
+            <form class="form" id="form">
+                <div class="form__input-wrapper">
+                    <input class="form__input" id="input" type="text" placeholder="Enter your city/town name">
+                    <button id="input-reset" class="form__input-clear" type="reset">X</button>
+                </div>
+            </form>
+            <section id="main" class="main">
+                <div id="today-box"></div>
+                <div id="week-box" class="week-forecast">
+                </div>
+            </section>
+        </main>
+    </section>
+<script src="Forecast.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
