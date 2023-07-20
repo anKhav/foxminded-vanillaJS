@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <title>Todo List</title>
+</head>
+<body>
+    <section class="todos">
+        <header class="header">
+            <h1 class="header__title">
+                foxmind<span>ed</span>
+            </h1>
+        </header>
+        <form class="form">
+            <div class="input__wrapper">
+                <input id="input" type="text" placeholder="Enter todo text"/>
+                <button id="button-submit" type="submit">Save</button>
+            </div>
+        </form>
+        <main id="main-box" class="main">
+
+        </main>
+        <button id="button-clear-todos" class="button-clear">
+            <img src="./trash.svg" alt="Trash">
+            <span>Clear</span>
+        </button>
+    </section>
+    <script src="./LocalStorageService.js"></script>
+    <script src="./Todo.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
