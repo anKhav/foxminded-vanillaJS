@@ -4,10 +4,16 @@ const input = document.querySelector('#input')
 const mainBox = document.querySelector('#main-box')
 
 const todo = new Todo(mainBox)
+todo.insertTodosTemplatesIntoDOM()
 
-const createTodo = (e) => {
+if (input.value.length === 0 ) submitButton.disabled = true
+
+const createTodo = async (e) => {
     e.preventDefault()
-    todo.addTodo(input.value)
+    await todo.addTodo(input.value)
+    input.value = ''
+    submitButton.disabled = true
 }
-clearTodosButton.addEventListener('click', () => todo.deleteAllTodos())
 submitButton.addEventListener('click', createTodo)
+input.addEventListener('input', () => input.value.length === 0 ? submitButton.disabled = true : submitButton.disabled = false)
+clearTodosButton.addEventListener('click', () => todo.deleteAllTodos())
