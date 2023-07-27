@@ -30,7 +30,22 @@
                             </button>
                         </div>
                     </form>
-                    <div class="dropdown"></div>
+                    <div class="dropdown">
+                        <div class="dropdown__title">
+                            <span>Region</span>
+                                <svg class="arrow-down" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.42859 10.2143L13 15.7857L18.5714 10.2143" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            <svg class="arrow-up" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5714 15.7858L13 10.2143L7.42855 15.7858" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <ul class="dropdown__list">
+                            <li class="dropdown__item">Europe</li>
+                            <li class="dropdown__item">Asia</li>
+                            <li class="dropdown__item">America</li>
+                        </ul>
+                    </div>
                 </div>
                 <section class="content">
                     <div class="country">
@@ -125,6 +140,7 @@
             </main>
         </div>
     </section>
+    <script src="./dropdown.js"></script>
     <script src="./index.js" defer></script>
 </body>
 </html>
