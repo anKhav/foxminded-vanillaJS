@@ -2,6 +2,8 @@ export default class Countries {
     constructor(countriesBoxDOMElement) {
         this.countriesBoxDOMElement = countriesBoxDOMElement
     }
+
+    apiBaseUrl = `https://restcountries.com/v3.1`
     getCountryHTMLTemplate (country, cssClass = ''){
         return (
             `
@@ -22,5 +24,10 @@ export default class Countries {
     insertCountriesDataIntoDOM (countries, cssClass) {
         this.countriesBoxDOMElement.innerHTML = ''
         countries.forEach(country => this.countriesBoxDOMElement.insertAdjacentHTML('beforeend', this.getCountryHTMLTemplate(country, cssClass)))
+    }
+    async fetchCountries (queryParams, searchParams) {
+        const res = await fetch(`${this.apiBaseUrl}/${queryParams.join('/')}?fields=${searchParams.join(',')}`)
+        const data = await res.json()
+        return data
     }
 }
