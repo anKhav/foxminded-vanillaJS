@@ -8,35 +8,35 @@ export default class ThemesSwitch {
     bodyDOM = null
     currentThemeMetaData = null
     init () {
-        this.insertSwitchElementIntoDOM()
-        this.theme = this.defaultTheme
+        this.theme = localStorage.getItem('theme') || this.defaultTheme
         this.bodyDOM = document.querySelector('body')
         this.currentThemeMetaData = [...document.getElementsByTagName("meta")].find(meta => meta.name === 'theme-color')
-        this.initializeStylesTheme()
-    }
-
-    themeSwitchHandler (styledElements) {
-        this.initializeStylesTheme()
         this.currentThemeMetaData.setAttribute('content', this.theme)
-        styledElements.forEach(el => {
-            if (this.theme === 'dark'){
-                el.classList.add('--theme-dark')
-            } else if (this.theme === 'light') {
-                el.classList.remove('--theme-dark')
-            }
-        })
+
+        this.insertSwitchElementIntoDOM()
+        this.initializeStyles()
     }
 
-    initializeStylesTheme () {
-        this.theme === 'light' ? this.checked = false : this.checked = true
+    themeSwitchHandler (DOMElementsForStyling) {
+        this.initializeStyles(DOMElementsForStyling)
+        this.currentThemeMetaData.setAttribute('content', this.theme)
+        localStorage.setItem('theme', this.theme)
+    }
+
+    initializeStyles (DOMElementsForStyling) {
         this.switchBoxDOMElement.firstElementChild.checked ? this.theme = 'dark' : this.theme = 'light'
         this.bodyDOM.classList.toggle('theme--dark', this.theme === 'dark')
         this.bodyDOM.classList.toggle('theme--light', this.theme === 'light')
+        if (DOMElementsForStyling) {
+            DOMElementsForStyling.forEach(el => {
+                el.classList.toggle('--theme-dark', this.theme === 'dark')
+            })
+        }
     }
     getSwitchHTMLTemplate () {
         return (
             `
-            <input type="checkbox" id="themeSwitch" name="theme-switch" class="theme-switch__input" />
+            <input ${this.theme === 'dark' ? 'checked' : ''} type="checkbox" id="themeSwitch" name="theme-switch" class="theme-switch__input" />
             <label class="theme-switch__label" for="themeSwitch"></label>
         `
         )

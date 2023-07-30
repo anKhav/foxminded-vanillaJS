@@ -9,14 +9,14 @@ export default class Dropdown {
     init (cb) {
         this.dropdownTitle = this.dropdownBox.querySelector('.dropdown__title')
         this.dropdownList = this.dropdownBox.querySelector('.dropdown__list')
-        document.addEventListener('click', (e) => {
-            if (e.target === this.dropdownTitle.firstElementChild || e.target === this.dropdownTitle){
+        document.addEventListener('click', (event) => {
+            if (event.target === this.dropdownTitle.firstElementChild || event.target === this.dropdownTitle){
                 this.dropdownList.classList.toggle('opened')
             } else {
                 this.dropdownList.classList.remove('opened')
-                if(e.target.classList.contains('dropdown__item')) {
-                    this.dropdownTitle.innerText = e.target.innerText
-                    cb(e)
+                if(event.target.classList.contains('dropdown__item')) {
+                    this.dropdownTitle.innerText = event.target.innerText
+                    cb(event)
                 }
             }
         })
