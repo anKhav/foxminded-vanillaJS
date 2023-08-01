@@ -3,14 +3,15 @@ export default class Countries {
         this.countriesBoxDOMElement = countriesBoxDOMElement
     }
 
-    apiBaseUrl = `https://restcountries.com/v3.1`
+    apiBaseUrl = `https://restcountries.com/v3.1/`
+    countries = null
+    #notFoundImageUrl = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'
     getCountryHTMLTemplate (country, cssClass = ''){
-        const notFoundImageUrl = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'
         return (
             `
             <div class="country ${cssClass}">
                         <div class="country__flag">
-                            <img class="country__img" src=${country.flags ? country.flags.png : notFoundImageUrl} alt=${country.flag || 'Not Found IMage'}>
+                            <img class="country__img" src=${country.flags ? country.flags.png : this.#notFoundImageUrl} alt=${country.flag || 'Not Found IMage'}>
                         </div>
                         <div class="country__details">
                             <h3 class="country__name">${country.name.official || '-'}</h3>
@@ -32,10 +33,24 @@ export default class Countries {
             if (!res.ok) {
                 throw new Error(res.statusText)
             } else {
-                return await res.json()
+                const data = await res.json()
+                this.countries = data
+                return data
             }
         } catch (e) {
             throw new Error(e.message)
         }
+    }
+    filterFetchedCountries (countries,countryName) {
+        const data = countries.filter(country => {
+            return country.name.common.toLowerCase().includes(countryName.toLowerCase())
+        })
+        if (data.length === 0){
+            return {
+                error:true,
+                message:'Not Found'
+            }
+        }
+        return data
     }
 }

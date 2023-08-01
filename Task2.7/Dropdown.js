@@ -10,7 +10,7 @@ export default class Dropdown {
         this.dropdownTitle = this.dropdownBox.querySelector('.dropdown__title')
         this.dropdownList = this.dropdownBox.querySelector('.dropdown__list')
         document.addEventListener('click', (event) => {
-            if (event.target === this.dropdownTitle.firstElementChild || event.target === this.dropdownTitle){
+            if (event.target === this.dropdownTitle){
                 this.dropdownList.classList.toggle('opened')
             } else {
                 this.dropdownList.classList.remove('opened')

@@ -15,8 +15,8 @@ formInputDOM.value = ''
 themeSwitchInstance.init();
 
 (async function initialFetch () {
+    await fetchAndInsertDropdownOptions()
     try {
-        await fetchAndInsertDropdownOptions()
         const data = await countriesInstance.fetchCountries(['all'], ['name','capital','population','flags','flag','region'])
         themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(data) : countriesInstance.insertCountriesDataIntoDOM(data, '--theme-dark')
     } catch (e) {
@@ -32,13 +32,22 @@ const themeSwitchHandler = () => {
 }
 async function fetchAndInsertCountriesByRegion  (event) {
     if (event.target.innerText !== 'Regions') {
-        countriesBoxDOM.innerHTML = `<div>Loading...</div>`
+        countriesBoxDOM.innerHTML = `<div class="error">Loading...</div>`
+        const region = event.target.innerText.toLowerCase()
         try {
-            const region = event.target.innerText.toLowerCase()
             const data = await countriesInstance.fetchCountries(['region', region], ['name','capital','population','flags','flag','region'])
-            themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(data) : countriesInstance.insertCountriesDataIntoDOM(data, '--theme-dark')
+            if (countriesInstance.countries && formInputDOM.value.length !== 0){
+                const filtered = countriesInstance.filterFetchedCountries(data, formInputDOM.value.toLowerCase())
+                if (!filtered.error) {
+                    themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(filtered) : countriesInstance.insertCountriesDataIntoDOM(filtered, '--theme-dark')
+                } else {
+                    countriesBoxDOM.innerHTML = `<div class="error">${filtered.message}</div>`
+                }
+            } else {
+                themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(data) : countriesInstance.insertCountriesDataIntoDOM(data, '--theme-dark')
+            }
         } catch (e) {
-            countriesBoxDOM.innerHTML = `<div>${e.message}</div>`
+            countriesBoxDOM.innerHTML = `<div class="error">${e.message}</div>`
         }
     }
 }
@@ -51,17 +60,27 @@ async function fetchAndInsertDropdownOptions (){
         themeSwitchInstance.theme === 'light' ? dropdown.insertRegionTemplateIntoDom('dropdown__item') : dropdown.insertRegionTemplateIntoDom('dropdown__item --theme-dark')
         themeSwitchInstance.initializeStyles([dropdownDOMElement, dropdown.dropdownList, dropdown.dropdownTitle])
     } catch (e) {
-        countriesBoxDOM.innerHTML = `<div>Something went wrong</div>`
+        countriesBoxDOM.innerHTML = `<div class="error">Something went wrong</div>`
     }
 }
 async function fetchSpecificCountry (e) {
     e.preventDefault()
+    const formData = new FormData(e.target);
     try {
-        const formData = new FormData(e.target);
-        const data = await countriesInstance.fetchCountries(['name', formData.get('country')], ['name', 'capital', 'population', 'flags', 'flag', 'region'])
-        themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(data) : countriesInstance.insertCountriesDataIntoDOM(data, '--theme-dark')
+        if (dropdownDOMElement.firstElementChild.innerText === 'Regions'){
+            const data = await countriesInstance.fetchCountries(['name', formData.get('country')], ['name', 'capital', 'population', 'flags', 'flag', 'region'])
+            themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(data) : countriesInstance.insertCountriesDataIntoDOM(data, '--theme-dark')
+        } else {
+            const data = await countriesInstance.fetchCountries(['region', dropdownDOMElement.firstElementChild.innerText], ['name','capital','population','flags','flag','region'])
+            const filtered = countriesInstance.filterFetchedCountries(data, formInputDOM.value.toLowerCase())
+            if (!filtered.error) {
+                themeSwitchInstance.theme === 'light' ? countriesInstance.insertCountriesDataIntoDOM(filtered) : countriesInstance.insertCountriesDataIntoDOM(filtered, '--theme-dark')
+            } else {
+                countriesBoxDOM.innerHTML = `<div class="error">${filtered.message}</div>`
+            }
+        }
     } catch (e) {
-        countriesBoxDOM.innerHTML = `<div>${e.message}</div>`
+        countriesBoxDOM.innerHTML = `<div class="error">${e.message}</div>`
     }
 }
 
