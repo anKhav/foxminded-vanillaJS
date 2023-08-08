@@ -4,6 +4,7 @@ const burgerCheckbox = document.querySelector('#burger')
 const burgerCheckboxLabel = document.querySelector('.burger-breadcrumbs')
 const filter = document.querySelector('.filter')
 const mainNavigation = document.querySelector('.nav-menu')
+const mainBox = document.querySelector('main')
 
 burgerCheckbox.checked = false
 cartCheckbox.checked = false
@@ -14,9 +15,11 @@ document.addEventListener('click', (e) => {
     if (e.target === burgerCheckbox || e.target === burgerCheckboxLabel) {
         burgerCheckboxLabel.style.visibility = 'hidden'
         document.body.classList.add('no-scroll')
+        mainBox.style.zIndex = '-1'
         filter.classList.add('filter--on')
     } else if (e.target === cartCheckbox) {
         document.body.classList.add('no-scroll')
+        mainBox.style.zIndex = '-1'
         filter.classList.add('filter--on')
     } else if (!selectedTargets){
         burgerCheckboxLabel.style = ''
@@ -24,5 +27,6 @@ document.addEventListener('click', (e) => {
         cartCheckbox.checked = false
         document.body.classList.remove('no-scroll')
         filter.classList.remove('filter--on')
+        mainBox.style.zIndex = ''
     }
 })
