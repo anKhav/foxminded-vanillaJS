@@ -362,3 +362,49 @@
     cursor: pointer;
     transition: .4s;
 }
+
+@media (min-width: 768px) {
+    .shop{
+        margin-top: 102px;
+    }
+    .shop__header{
+        padding: 52px 20px;
+        gap: 14px;
+    }
+    .shop__wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 70px;
+        max-width: 1200px;
+    }
+    .shop__filter{
+        width:calc(30% - 35px);
+        flex-direction: column;
+    }
+    .topics{
+        flex-direction: column;
+    }
+    .topics label{
+        width: 100%;
+        color: black;
+        border-color: transparent;
+        border-radius: 0;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+    }
+    .shop__content{
+        width: calc(70% - 35px);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .shop__content .item {
+        width: calc(50% - 15px);
+    }
+    .shop__content-button{
+        width: 100%;
+        max-width: 600px;
+        margin: 70px auto 0;
+    }
+}
