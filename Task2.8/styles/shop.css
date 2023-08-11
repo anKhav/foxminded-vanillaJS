@@ -1,42 +1,39 @@
-.header::after{
+.shop .header::after{
     background-color: white;
 }
-.header{
+.shop .header{
     color: black;
 }
-.header__logo .svg-fill{
+.shop .header__logo .svg-fill{
     fill: #CC5520;
     transition: .4s;
 }
-.header__logo:hover .svg-fill{
+.shop .header__logo:hover .svg-fill{
     fill: #f1d5d5;
     transition: .4s;
 }
-.header__logo:hover .svg-fill.svg-fill--hover{
+.shop .header__logo:hover .svg-fill.svg-fill--hover{
     fill: black;
     transition: .4s;
 }
 
-.breadcrumb{
+.shop .breadcrumb{
     background-color: black;
 }
-.nav__link{
-    color: white;
-}
 
-.nav-additional__link .svg-stroke{
+.shop .nav-additional__link .svg-stroke{
     stroke: black;
     transition: .4s;
 }
-.nav-additional__link:hover .svg-stroke{
+.shop .nav-additional__link:hover .svg-stroke{
     stroke: #CC5520;
     transition: .4s;
 }
-.nav-additional__link .svg-fill{
+.shop .nav-additional__link .svg-fill{
     fill: black;
     transition: .4s;
 }
-.nav-additional__link:hover .svg-fill{
+.shop .nav-additional__link:hover .svg-fill{
     fill: #CC5520;
     transition: .4s;
 }

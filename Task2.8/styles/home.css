@@ -1,7 +1,7 @@
 
 .main-screen{
     height: 100vh;
-    background: url("../images/content/home-bg.webp") center no-repeat;
+    background: url("../public/home-bg.webp") center no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
