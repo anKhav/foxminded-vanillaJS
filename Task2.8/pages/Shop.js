@@ -1,8 +1,34 @@
 import '../styles/shop.css'
 import imgShop from '/shop__img.jpg'
 import searchIcon from '/search-icon.svg'
+import {Product} from "../components/Product.js";
+import {ProductList} from "../components/ProductList.js";
 
-export const Shop = () => {
+export const Shop = (data) => {
+    const products = [
+        {
+            title:'Title',
+            img:imgShop,
+            price:120,
+            topic:'Forest',
+            rating:2
+        },
+        {
+            title:'Title',
+            img:imgShop,
+            price:120,
+            topic:'Forest',
+            rating:3
+        },
+        {
+            title:'Title',
+            img:imgShop,
+            price:120,
+            topic:'Forest',
+            rating:1
+        }
+    ]
+
     document.body.classList.add('about')
     return(
         `<main class="shop">
@@ -20,14 +46,15 @@ export const Shop = () => {
         </div>
         <fieldset class="topics">
             <span class="topics__title">Topic</span>
-            <label for="forest">Forest</label>
             <input type="radio" name="fox" value="Forest" id="forest">
-            <label for="kids">Fox Kids</label>
+            <label id="label" data-filter="topic" for="forest">Forest</label>
             <input type="radio" name="fox" value="Fox kids" id="kids">
-            <label for="all">All</label>
-            <input type="radio" name="fox" value="All" id="all">
-            <label for="other">Other</label>
-            <input type="radio" name="fox" value="Other" id="other">
+            <label id="label" data-filter="topic" for="kids">Fox Kids</label>
+             <input type="radio" name="fox" value="All" id="all" checked>
+            <label id="label" data-filter="topic" for="all">All</label>
+           <input type="radio" name="fox" value="Other" id="other">
+            <label id="label" data-filter="topic" for="other">Other</label>
+            
         </fieldset>
         <fieldset class="price">
             <label for="slider" class="price__title">Price</label>
@@ -40,7 +67,7 @@ export const Shop = () => {
                     <div class="range__thumb" id="range-thumb">
                     </div>
 
-                    <input type="range" class="range__input" id="slider" min="0" max="100" value="50" step="1">
+                    <input type="range" class="range__input" id="slider" min="0" max="100" value="100" id="label" step="1">
                 </div>
             </div>
             <div class="range__value">
@@ -49,61 +76,7 @@ export const Shop = () => {
         </fieldset>
     </form>
     <section class="section-outer section-inner shop__content">
-        <div class="item">
-            <div class="item__image">
-                <img src=${imgShop} alt="fox">
-                <button class="item__button"><span class="cross">+</span><span class="add">Add</span></button>
-            </div>
-            <div class="item__info">
-                <h4 class="item__title">Stylish chair</h4>
-                <span class="item__price">$120</span>
-                <div class="item__rating">
-                    <div class="star">
-                        <svg width="70" height="13" viewBox="0 0 70 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.92143 4.83452L6.40831 0L4.89532 4.83452H0L3.96072 7.82226L2.44773 12.6574L6.40831 9.6684L10.369 12.6574L8.85604 7.82226L12.8168 4.83452H7.92143Z" fill="#CC5520"/>
-                        </svg>
-                    </div>
-                </div>
-                <span class="item__topic">Forest</span>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__image">
-                <img src=${imgShop} alt="fox">
-                <button class="item__button"><span class="cross">+</span><span class="add">Add</span></button>
-            </div>
-            <div class="item__info">
-                <h4 class="item__title">Stylish chair</h4>
-                <span class="item__price">$120</span>
-                <div class="item__rating">
-                    <div class="star">
-                        <svg width="70" height="13" viewBox="0 0 70 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.92143 4.83452L6.40831 0L4.89532 4.83452H0L3.96072 7.82226L2.44773 12.6574L6.40831 9.6684L10.369 12.6574L8.85604 7.82226L12.8168 4.83452H7.92143Z" fill="#CC5520"/>
-                        </svg>
-                    </div>
-                </div>
-                <span class="item__topic">Forest</span>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__image">
-                <img src=${imgShop} alt="fox">
-                <button class="item__button"><span class="cross">+</span><span class="add">Add</span></button>
-            </div>
-            <div class="item__info">
-                <h4 class="item__title">Stylish chair</h4>
-                <span class="item__price">$120</span>
-                <div class="item__rating">
-                    <div class="star">
-                        <svg width="70" height="13" viewBox="0 0 70 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.92143 4.83452L6.40831 0L4.89532 4.83452H0L3.96072 7.82226L2.44773 12.6574L6.40831 9.6684L10.369 12.6574L8.85604 7.82226L12.8168 4.83452H7.92143Z" fill="#CC5520"/>
-                        </svg>
-                    </div>
-                </div>
-                <span class="item__topic">Forest</span>
-            </div>
-        </div>
-        <button class="shop__content-button">All foxes</button>
+        ${ProductList(data)}
     </section>
 </div>
 </main>`

@@ -30,3 +30,10 @@ document.addEventListener('click', (e) => {
         mainBox.style.zIndex = ''
     }
 })
+const getFullRatingTemplate = () => {
+    const arr = []
+    for (let i= 0; i < 4; i++){
+        arr.push('starTemplate')
+    }
+    return arr.join('')
+}
