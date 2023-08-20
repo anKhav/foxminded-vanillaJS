@@ -1,12 +1,12 @@
-import '../styles/about.css'
+import '../../styles/about.css'
 import img1 from '/history_foxes.jpg'
 import img2 from '/foxes2.jpg'
 
 
-export const About = () => {
+const About = () => {
+    const aboutDOM = document.createElement('section')
     document.body.classList.add('about')
-    return(
-        `<main class="history">
+    aboutDOM.innerHTML = `<main class="history">
     <div class="history__wrapper">
         <div class="history__header">
             <h3 class="history__subtitle">Home/About us</h3>
@@ -36,5 +36,6 @@ export const About = () => {
         </div>
     </div>
 </main>`
-    )
+    return aboutDOM
 }
+export default About

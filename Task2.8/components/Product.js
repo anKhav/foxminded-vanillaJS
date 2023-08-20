@@ -1,4 +1,5 @@
 import '../styles/product.css'
+import {addToCart} from "../utils/cart.js";
 
 
 export const Product = (product) => {
@@ -14,21 +15,38 @@ export const Product = (product) => {
         }
         return arr.join(' ')
     }
+    const addProductToCart = async (e) => {
+        await addToCart(product)
+    }
 
-    return(
-        `<div class="item">
-            <div class="item__image">
-                <img src=${product.image} alt="fox">
-                <button class="item__button"><span class="cross">+</span><span class="add">Add</span></button>
-            </div>
-            <div class="item__info">
-                <h4 class="item__title">${product.title}</h4>
+    const productDOM = document.createElement('div')
+    productDOM.classList.add('item')
+
+    const productImageWrapperDOM = document.createElement('div')
+    productImageWrapperDOM.classList.add('item__image')
+
+
+    const productImageDOM = document.createElement('img')
+    productImageDOM.setAttribute('src', product.image)
+    productImageDOM.setAttribute('alt', product.title)
+
+    const productButtonDOM = document.createElement('button')
+    productButtonDOM.classList.add('item__button')
+    productButtonDOM.id = `button-${product.id}`
+    productButtonDOM.innerHTML = `<span class="cross" id="cross-${product.id}">+</span><span class="add" id="add-${product.id}">Add</span>`
+    productButtonDOM.addEventListener('click', (e) => addProductToCart(e))
+
+    const productInfoDOM = document.createElement('div')
+    productInfoDOM.classList.add('product__info')
+    productInfoDOM.innerHTML = `<h4 class="item__title">${product.title}</h4>
                 <span class="item__price">$${product.price}</span>
                 <div class="item__rating">
                     ${getFullRatingTemplate(product.rating)}
                 </div>
-                <span class="item__topic">${product.topic}</span>
-            </div>
-        </div>`
-    )
+                <span class="item__topic">${product.topic}</span>`
+
+    productImageWrapperDOM.append(productImageDOM, productButtonDOM)
+
+    productDOM.append(productImageWrapperDOM, productInfoDOM)
+    return productDOM
 }

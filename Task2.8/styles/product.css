@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .item__image {
@@ -12,6 +13,7 @@
 }
 .item__image img{
     width: 100%;
+    height: 100%;
 }
 
 .item__button {

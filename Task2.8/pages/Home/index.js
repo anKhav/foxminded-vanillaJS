@@ -1,9 +1,10 @@
 import imgUrl from '/pngwing.png'
+import '../../styles/home.css'
 
 
-export const Home = () => {
-    return(
-        `<section>
+const Home = () => {
+    const homeDOM = document.createElement('section')
+    homeDOM.innerHTML = `<section>
         <div class="section-outer main-screen">
             <div class="section-inner">
                 <h2 class="main-screen__title">Discover foxlife</h2>
@@ -59,5 +60,6 @@ export const Home = () => {
             </form>
         </div>
     </section>`
-    )
+    return homeDOM
 }
+export default Home

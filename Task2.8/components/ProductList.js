@@ -1,8 +1,11 @@
 import {Product} from "./Product.js";
 
+
 export const ProductList = (data) => {
-    return(
-        `${data.map(item => Product(item)).join('')}
-        <button class="shop__content-button">All foxes</button>`
-    )
+    const productLIstDOM = document.createElement('div')
+    productLIstDOM.classList.add('section-outer')
+    productLIstDOM.classList.add('section-inner')
+    productLIstDOM.classList.add('shop__content')
+    data.forEach(product => productLIstDOM.appendChild(Product(product)))
+    return productLIstDOM
 }
