@@ -1,10 +1,13 @@
 
 import '../../styles/shop.css'
 import {ProductList} from "../../components/ProductList.js";
-import FilterForm from "../../components/FilterForm/FilterForm.js";
+import FilterForm from "../../components/FilterForm/index.js";
 import data from "../../data.js";
 
 const Shop = () => {
+
+    document.body.classList.add('header--white')
+
     let filterOptions = {
         title:null,
         topic:'All',

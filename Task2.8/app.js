@@ -1,6 +1,6 @@
-import Header from "./components/Header/Header.js";
-import Footer from './components/Footer/Footer.js'
-import Main from "./components/Main/Main.js";
+import Header from "./components/Header/index.js";
+import Footer from './components/Footer/index.js'
+import Main from "./components/Main/index.js";
 
 const appElement = document.getElementById('app');
 

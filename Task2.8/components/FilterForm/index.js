@@ -1,4 +1,4 @@
-import Range from "../Range/Range.js";
+import Range from "../Range/index.js";
 import {applyFilters} from "../../utils/filter.js";
 import data from "../../data.js";
 
@@ -58,4 +58,3 @@ const FilterForm = (options, handlers) => {
     return {filterDOM, filteredItems:applyFilters(data,labels,options)}
 }
 export default FilterForm
-// export const useFilterForm = (options) =>  FilterForm(options)

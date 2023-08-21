@@ -107,6 +107,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 .topics__title{
     width: 100%;
@@ -370,8 +371,9 @@ input[type='radio']:checked+label {
     text-align: center;
     display: flex;
     align-items: center;
-    width: calc(70% - 35px);
+    width: 100%;
     justify-content: center;
+
 }
 
 @media (min-width: 768px) {
@@ -418,5 +420,8 @@ input[type='radio']:checked+label {
         width: 100%;
         max-width: 600px;
         margin: 70px auto 0;
+    }
+    .not-found{
+        width: calc(70% - 35px);
     }
 }

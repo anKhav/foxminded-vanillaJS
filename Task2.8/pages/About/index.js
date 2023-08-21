@@ -5,7 +5,7 @@ import img2 from '/foxes2.jpg'
 
 const About = () => {
     const aboutDOM = document.createElement('section')
-    document.body.classList.add('about')
+    document.body.classList.add('header--white')
     aboutDOM.innerHTML = `<main class="history">
     <div class="history__wrapper">
         <div class="history__header">

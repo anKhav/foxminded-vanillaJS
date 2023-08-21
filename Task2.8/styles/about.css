@@ -1,42 +1,42 @@
-.about .header::after{
-    background-color: white;
-}
-.about .header{
-    color: black;
-}
-.about .header__logo .svg-fill{
-    fill: #CC5520;
-    transition: .4s;
-}
-.about .header__logo:hover .svg-fill{
-    fill: #f1d5d5;
-    transition: .4s;
-}
-.about .header__logo:hover .svg-fill.svg-fill--hover{
-    fill: black;
-    transition: .4s;
-}
+/*.header--white .header::after{*/
+/*    background-color: white;*/
+/*}*/
+/*.header--white .header{*/
+/*    color: black;*/
+/*}*/
+/*.header--white .header__logo .svg-fill{*/
+/*    fill: #CC5520;*/
+/*    transition: .4s;*/
+/*}*/
+/*.header--white .header__logo:hover .svg-fill{*/
+/*    fill: #f1d5d5;*/
+/*    transition: .4s;*/
+/*}*/
+/*.header--white .header__logo:hover .svg-fill.svg-fill--hover{*/
+/*    fill: black;*/
+/*    transition: .4s;*/
+/*}*/
 
-.about .breadcrumb{
-    background-color: black;
-}
+/*.header--white .breadcrumb{*/
+/*    background-color: black;*/
+/*}*/
 
-.about .nav-additional__link .svg-stroke{
-    stroke: black;
-    transition: .4s;
-}
-.about .nav-additional__link:hover .svg-stroke{
-    stroke: #CC5520;
-    transition: .4s;
-}
-.about .nav-additional__link .svg-fill{
-    fill: black;
-    transition: .4s;
-}
-.about .nav-additional__link:hover .svg-fill{
-    fill: #CC5520;
-    transition: .4s;
-}
+/*.header--white .nav-additional__link .svg-stroke{*/
+/*    stroke: black;*/
+/*    transition: .4s;*/
+/*}*/
+/*.header--white .nav-additional__link:hover .svg-stroke{*/
+/*    stroke: #CC5520;*/
+/*    transition: .4s;*/
+/*}*/
+/*.header--white .nav-additional__link .svg-fill{*/
+/*    fill: black;*/
+/*    transition: .4s;*/
+/*}*/
+/*.header--white .nav-additional__link:hover .svg-fill{*/
+/*    fill: #CC5520;*/
+/*    transition: .4s;*/
+/*}*/
 
 .history{
     margin-top: 27px;
