@@ -1,6 +1,9 @@
 import '../../styles/cart.css'
+import CartProductList from "../CartProductList/index.js";
+import {getCartProducts} from "../../utils/cart.js";
 
 const Cart = () => {
+
     const filterDOM = document.createElement('div')
     filterDOM.classList.add('cart-filter')
 
@@ -30,13 +33,24 @@ const Cart = () => {
 
     const cartContentDOM = document.createElement('div')
     cartContentDOM.classList.add('cart__content')
+    cartContentDOM.append(CartProductList())
 
     const cartTotalPriceDOM = document.createElement('p')
     cartTotalPriceDOM.classList.add('cart__total-price')
-    cartTotalPriceDOM.innerHTML = `Total:<span>$1.80</span>`
+    cartTotalPriceDOM.innerText = `$${getCartProducts().totalPrice}`
 
     const cartButtonCheckoutDOM = document.createElement('button')
     cartButtonCheckoutDOM.classList.add('cart__button')
+
+    const closeCart = () => {
+        cartInputCheckboxDOM.checked = false
+        filterDOM.classList.remove('cart-filter--on')
+        document.body.classList.remove('no-scroll')
+    }
+
+    cartDOM.addEventListener('click', () => {
+        cartTotalPriceDOM.innerText = `$${getCartProducts().totalPrice}`
+    })
 
     cartDOM.append(cartButtonCloseDOM, cartSubtitleDOM, cartTitleDOM, cartContentDOM, cartTotalPriceDOM, cartButtonCheckoutDOM)
     additionalMenuDOM.append(filterDOM, cartInputCheckboxDOM, cartDOM)
@@ -45,12 +59,11 @@ const Cart = () => {
 
     cartInputCheckboxDOM.addEventListener('change', () => {
         filterDOM.classList.add('cart-filter--on')
+        document.body.classList.add('no-scroll')
     })
 
-    cartButtonCloseDOM.addEventListener('click', () => {
-        cartInputCheckboxDOM.checked = false
-        filterDOM.classList.remove('cart-filter--on')
-    })
+    cartButtonCloseDOM.addEventListener('click', closeCart)
+    filterDOM.addEventListener('click', closeCart)
 
     additionalMenuDOM.insertAdjacentHTML('beforeend' , `
       <label for="cart" class="nav-additional__link">

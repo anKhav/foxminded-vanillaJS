@@ -1,5 +1,6 @@
 import '../styles/product.css'
-import {addToCart} from "../utils/cart.js";
+import {addToCart, getCartProducts} from "../utils/cart.js";
+import CartProductList from "./CartProductList/index.js";
 
 
 export const Product = (product) => {
@@ -16,7 +17,7 @@ export const Product = (product) => {
         return arr.join(' ')
     }
     const addProductToCart = async (e) => {
-        await addToCart(product)
+        await addToCart({...product, quantity:1})
     }
 
     const productDOM = document.createElement('div')
@@ -34,7 +35,7 @@ export const Product = (product) => {
     productButtonDOM.classList.add('item__button')
     productButtonDOM.id = `button-${product.id}`
     productButtonDOM.innerHTML = `<span class="cross" id="cross-${product.id}">+</span><span class="add" id="add-${product.id}">Add</span>`
-    productButtonDOM.addEventListener('click', (e) => addProductToCart(e))
+
 
     const productInfoDOM = document.createElement('div')
     productInfoDOM.classList.add('product__info')
@@ -48,5 +49,16 @@ export const Product = (product) => {
     productImageWrapperDOM.append(productImageDOM, productButtonDOM)
 
     productDOM.append(productImageWrapperDOM, productInfoDOM)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartContent = document.querySelector('.cart__content')
+        const totalPrice = document.querySelector('.cart__total-price')
+        productButtonDOM.addEventListener('click',  async (e) => {
+            await addProductToCart(e)
+            cartContent.innerHTML = ''
+            cartContent.append(CartProductList())
+            totalPrice.innerHTML = `Total:<span>$${getCartProducts().totalPrice}</span>`
+        })
+    })
     return productDOM
 }

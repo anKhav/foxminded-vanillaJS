@@ -1,0 +1,6 @@
+.cart-product__list{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px 0;
+}

@@ -62,17 +62,18 @@ const Header = () => {
     navigationButtonCloseDOM.classList.add('nav__button')
     navigationButtonCloseDOM.id = 'burger-button--close'
 
+    const closeBurgerMenu = () => {
+        burgerInputDOM.checked = false
+        filterDOM.classList.remove('filter--on')
+        document.body.classList.remove('no-scroll')
+    }
+
     burgerInputDOM.addEventListener('change', (e)=> {
         filterDOM.classList.toggle('filter--on')
+        document.body.classList.add('no-scroll')
     })
-    filterDOM.addEventListener('click', () => {
-        burgerInputDOM.checked = false
-        filterDOM.classList.remove('filter--on')
-    })
-    navigationButtonCloseDOM.addEventListener('click', () => {
-        burgerInputDOM.checked = false
-        filterDOM.classList.remove('filter--on')
-    })
+    filterDOM.addEventListener('click', closeBurgerMenu)
+    navigationButtonCloseDOM.addEventListener('click', closeBurgerMenu)
     headerWrapperDOM.append(filterDOM, burgerLabelBreadcrumbsDOM, burgerInputDOM)
     navigationDOM.append(...navigationLinkNodesArray, navigationButtonCloseDOM)
     headerWrapperDOM.append(filterDOM, burgerLabelBreadcrumbsDOM, burgerInputDOM, navigationDOM)
