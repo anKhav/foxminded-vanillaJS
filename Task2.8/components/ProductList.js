@@ -1,4 +1,5 @@
 import {Product} from "./Product.js";
+import data from "../data.js";
 
 
 export const ProductList = (data) => {
@@ -7,5 +8,6 @@ export const ProductList = (data) => {
     productLIstDOM.classList.add('section-inner')
     productLIstDOM.classList.add('shop__content')
     data.forEach(product => productLIstDOM.appendChild(Product(product)))
+
     return productLIstDOM
 }

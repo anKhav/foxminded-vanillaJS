@@ -57,6 +57,7 @@ const Shop = () => {
     shopWrapperDOM.append(filterDOM,ProductList(data))
     shopDOM.appendChild(shopWrapperDOM)
 
+
     return shopDOM
 }
 export default Shop

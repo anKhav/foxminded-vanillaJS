@@ -3,10 +3,11 @@ import {
     decrementProductAmount,
     getCartProducts,
     getSpecificProduct,
-    incrementProductAmount
+    incrementProductAmount, removeProductFromCart
 } from "../../../utils/cart.js";
 const CartProduct = (product) => {
     const stored = getSpecificProduct(product.id)
+    // console.log(product);
     const cartProductDOM = document.createElement('div')
     cartProductDOM.classList.add('product-item')
     cartProductDOM.setAttribute('key',`cart-product-${product.id}`)
@@ -37,6 +38,7 @@ const CartProduct = (product) => {
     const removeProductButtonDOM = document.createElement('button')
     removeProductButtonDOM.classList.add('product-item__delete-button')
     removeProductButtonDOM.innerText = 'Remove'
+    removeProductButtonDOM.setAttribute('key',`product-remove-${product.id}`)
 
     cartProductControlsWrapperDOM.append(decrementButtonDOM, quantityInfoDOM, incrementButtonDOM)
     cartProductControlsDOM.append(cartProductControlsWrapperDOM, removeProductButtonDOM)
@@ -54,7 +56,6 @@ const CartProduct = (product) => {
             incrementButtonDOM.disabled = false
             decrementButtonDOM.disabled = false
         }
-        console.log('clikced')
     }
 
     incrementButtonDOM.addEventListener('click', () => commonHandler(incrementProductAmount))

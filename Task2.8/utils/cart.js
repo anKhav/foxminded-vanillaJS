@@ -52,8 +52,22 @@ export const decrementProductAmount = (product) => {
 }
 
 
+
 export const getCartProducts = () => JSON.parse(localStorage.getItem('cart'))
 export const getSpecificProduct = (id) => {
     const products =  JSON.parse(localStorage.getItem('cart')).data
-    return products.find(product => product.id = id)
+    return products.find(product => product.id === id)
+}
+export const removeProductFromCart = (id) => {
+    const cart = JSON.parse(localStorage.getItem('cart'))
+
+    const resultedCart = cart.data.filter(product => product.id !== id)
+
+    const newCart = {data:resultedCart, totalPrice:0}
+    newCart.totalPrice = resultedCart.reduce((acc, product) => {
+        acc += product.price * product.quantity;
+        return acc;
+    }, 0);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    return newCart
 }

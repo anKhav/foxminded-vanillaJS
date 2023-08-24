@@ -30,6 +30,14 @@
     justify-content: space-between;
     transition: all .4s;
 }
+.item__button:disabled{
+    background-color: #77767E;
+}
+.item__button:disabled:hover{
+    background-color:#77767E;
+    color: white;
+    cursor: not-allowed;
+}
 .item__button .cross{
     color: inherit;
     text-align: center;

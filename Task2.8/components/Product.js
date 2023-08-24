@@ -1,5 +1,5 @@
 import '../styles/product.css'
-import {addToCart, getCartProducts} from "../utils/cart.js";
+import {addToCart, getCartProducts, getSpecificProduct} from "../utils/cart.js";
 import CartProductList from "./CartProductList/index.js";
 
 
@@ -16,16 +16,12 @@ export const Product = (product) => {
         }
         return arr.join(' ')
     }
-    const addProductToCart = async (e) => {
-        await addToCart({...product, quantity:1})
-    }
 
     const productDOM = document.createElement('div')
     productDOM.classList.add('item')
 
     const productImageWrapperDOM = document.createElement('div')
     productImageWrapperDOM.classList.add('item__image')
-
 
     const productImageDOM = document.createElement('img')
     productImageDOM.setAttribute('src', product.image)
@@ -35,6 +31,7 @@ export const Product = (product) => {
     productButtonDOM.classList.add('item__button')
     productButtonDOM.id = `button-${product.id}`
     productButtonDOM.innerHTML = `<span class="cross" id="cross-${product.id}">+</span><span class="add" id="add-${product.id}">Add</span>`
+    productButtonDOM.addEventListener('click', () => console.log('e'))
 
 
     const productInfoDOM = document.createElement('div')
@@ -46,19 +43,42 @@ export const Product = (product) => {
                 </div>
                 <span class="item__topic">${product.topic}</span>`
 
+
     productImageWrapperDOM.append(productImageDOM, productButtonDOM)
 
     productDOM.append(productImageWrapperDOM, productInfoDOM)
 
+    const addProductToCart = async (e) => {
+        await addToCart({...product, quantity:1})
+        console.log(product)
+    }
+
+    const setButtonState = () => {
+        const storedProduct = getSpecificProduct(product.id)
+        productButtonDOM.disabled = storedProduct?.quantity === 10
+    }
+    setButtonState()
+
+    const applyListeners = () => {
+
+    }
     document.addEventListener('DOMContentLoaded', () => {
         const cartContent = document.querySelector('.cart__content')
         const totalPrice = document.querySelector('.cart__total-price')
+        const cartFilter = document.querySelector('.cart-filter')
+        const shopFilter = document.querySelector('.shop__filter')
+        cartFilter.addEventListener('click', setButtonState)
+        shopFilter.addEventListener('click', setButtonState)
+        console.log('s')
         productButtonDOM.addEventListener('click',  async (e) => {
             await addProductToCart(e)
+            const storedProduct = getSpecificProduct(product.id)
+            productButtonDOM.disabled = storedProduct?.quantity === 10;
             cartContent.innerHTML = ''
             cartContent.append(CartProductList())
             totalPrice.innerHTML = `Total:<span>$${getCartProducts().totalPrice}</span>`
         })
+
     })
     return productDOM
 }
