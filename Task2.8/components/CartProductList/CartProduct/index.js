@@ -79,35 +79,6 @@ const CartProduct = (product, handler) => {
       
     `)
 
-
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const item = [...document.querySelectorAll('.item')].find(el => +el.getAttribute('key') === product.id)
-    //     const filter = document.querySelector('.cart-filter')
-    //     const closeButton = document.querySelector('#cart-button--close')
-    //     filter.addEventListener('click', () => {
-    //         const stored = getSpecificProduct(product.id)
-    //         const button = item.querySelector('.item__button')
-    //         if (stored) {
-    //             if (stored.quantity === 10){
-    //                 button.disabled = true
-    //             } else {
-    //                 button.disabled = false
-    //             }
-    //         }
-    //     })
-    //     closeButton.addEventListener('click', () => {
-    //         const stored = getSpecificProduct(product.id)
-    //         const button = item.querySelector('.item__button')
-    //         if (stored) {
-    //             if (stored.quantity === 10){
-    //                 button.disabled = true
-    //             } else {
-    //                 button.disabled = false
-    //             }
-    //         }
-    //     })
-    // })
-
     return cartProductDOM
 }
 export default CartProduct

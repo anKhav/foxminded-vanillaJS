@@ -1,5 +1,5 @@
 import '../styles/product.css'
-import {addToCart, getSpecificProduct} from "../utils/cart.js";
+import {addToCart, getCartProducts, getSpecificProduct} from "../utils/cart.js";
 
 export const renderButton = (product) => {
     const productButtonDOM = document.createElement('button')
@@ -10,6 +10,7 @@ export const renderButton = (product) => {
 }
 
 export const Product = (product) => {
+
     const starTemplate = `<div class="star">
                         <svg width="13" height="13" viewBox="0 0 0 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.92143 4.83452L6.40831 0L4.89532 4.83452H0L3.96072 7.82226L2.44773 12.6574L6.40831 9.6684L10.369 12.6574L8.85604 7.82226L12.8168 4.83452H7.92143Z" fill="#CC5520"/>
@@ -23,6 +24,10 @@ export const Product = (product) => {
         return arr.join(' ')
     }
 
+    const notificationElement = document.createElement('div')
+    notificationElement.innerText = 'You can buy only 10 pcs of 1 product type!'
+    notificationElement.classList.add('notification')
+
     const productDOM = document.createElement('div')
     productDOM.classList.add('item')
     productDOM.setAttribute('key', `${product.id}`)
@@ -34,21 +39,13 @@ export const Product = (product) => {
     productImageDOM.setAttribute('src', product.image)
     productImageDOM.setAttribute('alt', product.title)
 
+    const addNotification = () => {
+        notificationElement.classList.add('notification--open')
+    }
+    const removeNotification = () => {
+        notificationElement.classList.remove('notification--open')
+    }
 
-    const filter = document.querySelector('.cart-filter')
-    const closeCartButton = document.querySelector('#cart-button--close')
-    closeCartButton.addEventListener('click', () => {
-        const stored = getSpecificProduct(product.id)
-        if (stored) {
-            productButtonDOM.disabled = stored.quantity === 10;
-        }
-    })
-    filter.addEventListener('click', () => {
-        const stored = getSpecificProduct(product.id)
-        if (stored) {
-            productButtonDOM.disabled = stored.quantity === 10;
-        }
-    })
 
     const productButtonDOM = renderButton(product)
 
@@ -69,8 +66,7 @@ export const Product = (product) => {
 
     const addProductToCart = async () => {
         await addToCart({...product, quantity:1})
-        const storedProduct = getSpecificProduct(product.id)
-        productButtonDOM.disabled = storedProduct.quantity === 10;
+        setButtonState()
     }
 
     productButtonDOM.addEventListener('click', async () => {
@@ -80,9 +76,22 @@ export const Product = (product) => {
     const setButtonState = () => {
         const storedProduct = getSpecificProduct(product.id)
         if (storedProduct) {
-            productButtonDOM.disabled = storedProduct.quantity === 10;
+            storedProduct.quantity === 10 ? productButtonDOM.disabled = true : productButtonDOM.disabled = false;
+        }
+        if (productButtonDOM.disabled) {
+            productButtonDOM.addEventListener('mouseover',addNotification)
+            productButtonDOM.addEventListener('mouseout', removeNotification)
+        } else {
+            productButtonDOM.removeEventListener('mouseover',addNotification)
+            productButtonDOM.removeEventListener('mouseout', removeNotification)
         }
     }
+    const filter = document.querySelector('.cart-filter')
+    const closeCartButton = document.querySelector('#cart-button--close')
+    closeCartButton.addEventListener('click', setButtonState)
+    filter.addEventListener('click', setButtonState)
+
     setButtonState()
+    productDOM.append(notificationElement)
     return productDOM
 }

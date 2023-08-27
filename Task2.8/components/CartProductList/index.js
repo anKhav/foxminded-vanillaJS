@@ -11,9 +11,10 @@ const CartProductList = (handler) => {
     cart && cart.data.forEach(product => cartProductListDOM.append(CartProduct(product, handler)))
 
     cartProductListDOM.addEventListener('click', (e) => {
-        const key = e?.target?.getAttribute('key')?.split('-')[e.target.getAttribute('key').split('-').length - 1]
-        if (key){
-            const cart = removeProductFromCart(+key)
+        const key = e?.target?.getAttribute('key')?.split('-')
+        if (key && e.target.classList.contains('product-item__delete-button')){
+            const id = +key[key.length - 1]
+            const cart = removeProductFromCart(id)
             cartProductListDOM.innerHTML = ``
             cart && cart.data.forEach(product => cartProductListDOM.append(CartProduct(product, handler)))
         }
