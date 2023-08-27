@@ -1,4 +1,3 @@
-import products from "../data.js";
 
 export const addToCart = async (product) => {
     const cart = await JSON.parse(localStorage.getItem('cart')) || { data: [], totalPrice: 0 };

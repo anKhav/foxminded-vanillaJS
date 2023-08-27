@@ -41,7 +41,7 @@
 .cart__subtitle {
     color: #969595;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
@@ -51,7 +51,7 @@
 
 .cart__title {
     color: #000;
-    font-family: Playfair Display;
+    font-family: Playfair Display,sans-serif;
     font-size: 50px;
     font-style: normal;
     font-weight: 700;
@@ -64,7 +64,8 @@
     flex: 1 0 50vh;
     margin-top: 40px;
     padding: 0 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -73,7 +74,7 @@
 .cart__total-price {
     color: #000;
     text-align: center;
-    font-family: Playfair Display;
+    font-family: Playfair Display, sans-serif;
     font-size: 37px;
     font-style: normal;
     font-weight: 800;
@@ -88,7 +89,7 @@
     background-color: #CC5520;
     color: #FFF;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -133,7 +134,7 @@
 .product .amount-button{
     color: #8C8C8C;
     text-align: center;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 19px;
     font-style: normal;
     font-weight: 700;
@@ -150,7 +151,7 @@
     background-color: #CC5520;
     color: #FFF;
     text-align: center;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 19px;
     font-style: normal;
     font-weight: 700;

@@ -1,13 +1,15 @@
 import './index.css'
 import {
     decrementProductAmount,
-    getCartProducts,
     getSpecificProduct,
-    incrementProductAmount, removeProductFromCart
+    incrementProductAmount
 } from "../../../utils/cart.js";
-const CartProduct = (product) => {
+import {renderButton} from "../../Product.js";
+const CartProduct = (product, handler) => {
+
+    const productButtonDOM = renderButton(product)
+
     const stored = getSpecificProduct(product.id)
-    // console.log(product);
     const cartProductDOM = document.createElement('div')
     cartProductDOM.classList.add('product-item')
     cartProductDOM.setAttribute('key',`cart-product-${product.id}`)
@@ -44,22 +46,25 @@ const CartProduct = (product) => {
     cartProductControlsDOM.append(cartProductControlsWrapperDOM, removeProductButtonDOM)
     cartProductDOM.append(cartProductControlsDOM)
 
-    const commonHandler = async (cb) => {
+    const commonHandler = async (cb, cb2) => {
         const stored = await cb(product)
-        console.log(stored.quantity);
         quantityInfoDOM.innerText = `${stored.quantity}`
         if (stored.quantity === 1){
             decrementButtonDOM.disabled = true
         } else if (stored.quantity === 10) {
             incrementButtonDOM.disabled = true
+            productButtonDOM.disabled = true
         } else {
             incrementButtonDOM.disabled = false
             decrementButtonDOM.disabled = false
+            productButtonDOM.innerHTML = ''
         }
+        productButtonDOM.innerHTML = ''
+        cb2(productButtonDOM)
     }
 
-    incrementButtonDOM.addEventListener('click', () => commonHandler(incrementProductAmount))
-    decrementButtonDOM.addEventListener('click', () => commonHandler(decrementProductAmount))
+    incrementButtonDOM.addEventListener('click', () => commonHandler(incrementProductAmount,handler))
+    decrementButtonDOM.addEventListener('click', () => commonHandler(decrementProductAmount, handler))
 
     cartProductDOM.insertAdjacentHTML('afterbegin', `
        <div class="product-item__content">
@@ -73,6 +78,35 @@ const CartProduct = (product) => {
        </div>
       
     `)
+
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const item = [...document.querySelectorAll('.item')].find(el => +el.getAttribute('key') === product.id)
+    //     const filter = document.querySelector('.cart-filter')
+    //     const closeButton = document.querySelector('#cart-button--close')
+    //     filter.addEventListener('click', () => {
+    //         const stored = getSpecificProduct(product.id)
+    //         const button = item.querySelector('.item__button')
+    //         if (stored) {
+    //             if (stored.quantity === 10){
+    //                 button.disabled = true
+    //             } else {
+    //                 button.disabled = false
+    //             }
+    //         }
+    //     })
+    //     closeButton.addEventListener('click', () => {
+    //         const stored = getSpecificProduct(product.id)
+    //         const button = item.querySelector('.item__button')
+    //         if (stored) {
+    //             if (stored.quantity === 10){
+    //                 button.disabled = true
+    //             } else {
+    //                 button.disabled = false
+    //             }
+    //         }
+    //     })
+    // })
 
     return cartProductDOM
 }

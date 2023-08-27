@@ -1,7 +1,13 @@
 import '../styles/product.css'
-import {addToCart, getCartProducts, getSpecificProduct} from "../utils/cart.js";
-import CartProductList from "./CartProductList/index.js";
+import {addToCart, getSpecificProduct} from "../utils/cart.js";
 
+export const renderButton = (product) => {
+    const productButtonDOM = document.createElement('button')
+    productButtonDOM.classList.add('item__button')
+    productButtonDOM.id = `button-${product.id}`
+    productButtonDOM.innerHTML = `<span class="cross" id="cross-${product.id}">+</span><span class="add" id="add-${product.id}">Add</span>`
+    return productButtonDOM
+}
 
 export const Product = (product) => {
     const starTemplate = `<div class="star">
@@ -19,6 +25,7 @@ export const Product = (product) => {
 
     const productDOM = document.createElement('div')
     productDOM.classList.add('item')
+    productDOM.setAttribute('key', `${product.id}`)
 
     const productImageWrapperDOM = document.createElement('div')
     productImageWrapperDOM.classList.add('item__image')
@@ -27,11 +34,16 @@ export const Product = (product) => {
     productImageDOM.setAttribute('src', product.image)
     productImageDOM.setAttribute('alt', product.title)
 
-    const productButtonDOM = document.createElement('button')
-    productButtonDOM.classList.add('item__button')
-    productButtonDOM.id = `button-${product.id}`
-    productButtonDOM.innerHTML = `<span class="cross" id="cross-${product.id}">+</span><span class="add" id="add-${product.id}">Add</span>`
-    productButtonDOM.addEventListener('click', () => console.log('e'))
+
+    const filter = document.querySelector('.cart-filter')
+    filter.addEventListener('click', () => {
+        const stored = getSpecificProduct(product.id)
+        if (stored) {
+            productButtonDOM.disabled = stored.quantity === 10;
+        }
+    })
+
+    const productButtonDOM = renderButton(product)
 
 
     const productInfoDOM = document.createElement('div')
@@ -48,37 +60,24 @@ export const Product = (product) => {
 
     productDOM.append(productImageWrapperDOM, productInfoDOM)
 
-    const addProductToCart = async (e) => {
+    const addProductToCart = async () => {
         await addToCart({...product, quantity:1})
-        console.log(product)
+        const storedProduct = getSpecificProduct(product.id)
+        if (storedProduct.quantity === 10) {
+            productButtonDOM.disabled = true
+        } else {
+            productButtonDOM.disabled = false
+        }
     }
+
+    productButtonDOM.addEventListener('click', async () => {
+       await addProductToCart()
+    })
 
     const setButtonState = () => {
         const storedProduct = getSpecificProduct(product.id)
         productButtonDOM.disabled = storedProduct?.quantity === 10
     }
     setButtonState()
-
-    const applyListeners = () => {
-
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-        const cartContent = document.querySelector('.cart__content')
-        const totalPrice = document.querySelector('.cart__total-price')
-        const cartFilter = document.querySelector('.cart-filter')
-        const shopFilter = document.querySelector('.shop__filter')
-        cartFilter.addEventListener('click', setButtonState)
-        shopFilter.addEventListener('click', setButtonState)
-        console.log('s')
-        productButtonDOM.addEventListener('click',  async (e) => {
-            await addProductToCart(e)
-            const storedProduct = getSpecificProduct(product.id)
-            productButtonDOM.disabled = storedProduct?.quantity === 10;
-            cartContent.innerHTML = ''
-            cartContent.append(CartProductList())
-            totalPrice.innerHTML = `Total:<span>$${getCartProducts().totalPrice}</span>`
-        })
-
-    })
     return productDOM
 }

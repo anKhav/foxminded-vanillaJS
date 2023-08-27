@@ -55,6 +55,7 @@ const FilterForm = (options, handlers) => {
     rangeDOM.appendChild(priceDOM)
     filterDOM.appendChild(rangeDOM)
 
+
     return {filterDOM, filteredItems:applyFilters(data,labels,options)}
 }
 export default FilterForm

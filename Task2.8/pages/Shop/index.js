@@ -17,6 +17,9 @@ const Shop = () => {
     const notFoundDOM = document.createElement('div')
     notFoundDOM.classList.add('not-found')
     notFoundDOM.innerText = 'Not found please select other filter options.'
+
+
+
     const topicHandler = (e, fn) => {
         filterOptions.topic = e.target.innerText
         const res = fn(filterOptions)

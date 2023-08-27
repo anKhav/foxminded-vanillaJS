@@ -1,56 +1,39 @@
 import '../../styles/header.css'
 import Cart from "../Cart/index.js";
 
+import {navigationLinks} from "../../utils/consts.js";
+
 const Header = () => {
-    const navigationLinks = [
-        {
-            id:'link-1',
-            title:'Shop',
-            href:'/'
-        },
-        {
-            id:'link-2',
-            title:'Main Page',
-            href:'/'
-        },
-        {
-            id:'link-3',
-            title:'Our History',
-            href:'/about'
-        },
-        {
-            id:'link-4',
-            title:'All Items',
-            href:'/shop'
-        },
-    ]
 
-    const headerDOM = document.createElement('header')
-    headerDOM.classList.add('header')
 
-    const headerWrapperDOM = document.createElement('div')
-    headerWrapperDOM.classList.add('section-outer')
-    headerWrapperDOM.classList.add('section-inner')
-    headerWrapperDOM.classList.add('header__wrapper')
+    const headerElement = document.createElement('header')
+    headerElement.classList.add('header')
 
-    const filterDOM = document.createElement('div')
-    filterDOM.classList.add('filter')
+    const headerWrapperElement = document.createElement('div')
+    headerWrapperElement.classList.add('section-outer')
+    headerWrapperElement.classList.add('section-inner')
+    headerWrapperElement.classList.add('header__wrapper')
 
-    const burgerLabelBreadcrumbsDOM = document.createElement('label')
-    burgerLabelBreadcrumbsDOM.classList.add('burger-breadcrumbs')
-    burgerLabelBreadcrumbsDOM.setAttribute('for', 'burger')
-    burgerLabelBreadcrumbsDOM.innerHTML = `<span class="breadcrumb"></span>
-      <span class="breadcrumb"></span>
-      <span class="breadcrumb"></span>`
+    const burgerFilterElement = document.createElement('div')
+    burgerFilterElement.classList.add('filter')
 
-    const burgerInputDOM = document.createElement('input')
-    burgerInputDOM.id = 'burger'
-    burgerInputDOM.setAttribute('type', 'checkbox')
+    const burgerLabelBreadcrumbsElement = document.createElement('label')
+    burgerLabelBreadcrumbsElement.classList.add('burger-breadcrumbs')
+    burgerLabelBreadcrumbsElement.setAttribute('for', 'burger')
+    burgerLabelBreadcrumbsElement.innerHTML =
+        `<span class="breadcrumb"></span>
+         <span class="breadcrumb"></span>
+         <span class="breadcrumb"></span>`
 
-    const navigationDOM = document.createElement('nav')
-    navigationDOM.classList.add('nav-menu')
+    const burgerInputElement = document.createElement('input')
+    burgerInputElement.id = 'burger'
+    burgerInputElement.setAttribute('type', 'checkbox')
+    burgerInputElement.checked = false
 
-    const navigationLinkNodesArray = navigationLinks.map(link => {
+    const navigationElement = document.createElement('nav')
+    navigationElement.classList.add('nav-menu')
+
+    const navigationLinkElements = navigationLinks.map(link => {
         const navigationLinkDOM = document.createElement('a')
         navigationLinkDOM.classList.add('nav__link')
         navigationLinkDOM.setAttribute('href', link.href)
@@ -58,26 +41,30 @@ const Header = () => {
         return navigationLinkDOM
     })
 
-    const navigationButtonCloseDOM = document.createElement('button')
-    navigationButtonCloseDOM.classList.add('nav__button')
-    navigationButtonCloseDOM.id = 'burger-button--close'
+    const navigationButtonCloseElement = document.createElement('button')
+    navigationButtonCloseElement.classList.add('nav__button')
+    navigationButtonCloseElement.id = 'burger-button--close'
 
-    const closeBurgerMenu = () => {
-        burgerInputDOM.checked = false
-        filterDOM.classList.remove('filter--on')
-        document.body.classList.remove('no-scroll')
+    const toggleBurgerMenuClassHandler = () => {
+        burgerFilterElement.classList.toggle('filter--on')
+        document.body.classList.toggle('no-scroll')
     }
 
-    burgerInputDOM.addEventListener('change', (e)=> {
-        filterDOM.classList.toggle('filter--on')
-        document.body.classList.add('no-scroll')
-    })
-    filterDOM.addEventListener('click', closeBurgerMenu)
-    navigationButtonCloseDOM.addEventListener('click', closeBurgerMenu)
-    headerWrapperDOM.append(filterDOM, burgerLabelBreadcrumbsDOM, burgerInputDOM)
-    navigationDOM.append(...navigationLinkNodesArray, navigationButtonCloseDOM)
-    headerWrapperDOM.append(filterDOM, burgerLabelBreadcrumbsDOM, burgerInputDOM, navigationDOM)
-    headerWrapperDOM.insertAdjacentHTML("beforeend", `
+    const closeBurgerMenu = () => {
+        toggleBurgerMenuClassHandler()
+        burgerInputElement.checked = false
+    }
+
+    burgerInputElement.addEventListener('change', toggleBurgerMenuClassHandler)
+
+    burgerFilterElement.addEventListener('click', closeBurgerMenu)
+    navigationButtonCloseElement.addEventListener('click', closeBurgerMenu)
+
+    navigationElement.append(...navigationLinkElements, navigationButtonCloseElement)
+
+    headerWrapperElement.append(burgerFilterElement, burgerLabelBreadcrumbsElement, burgerInputElement, navigationElement, Cart(burgerFilterElement))
+
+    headerWrapperElement.insertAdjacentHTML("beforeend", `
     <a href="/" class="logo header__logo">
       <svg width="121" height="23" viewBox="0 0 121 23" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="svg-fill" d="M5.63782 11.9675V21.1019H1.49576V11.9675H0V8.75668H1.49576V6.3209C1.49576 4.93707 1.63967 3.35936 2.93399 2.03086C3.76812 1.17244 4.94748 0.619141 6.5296 0.619141C7.44998 0.619141 8.19775 0.785132 8.88832 1.03412V4.52186C8.42813 4.24498 7.82392 4.05133 7.30608 4.05133C6.67339 4.05133 6.27062 4.32821 6.09801 4.54953C5.63782 5.13095 5.63782 6.09969 5.63782 6.68077V8.75679H8.91703V11.9677H5.63782V11.9675Z"/>
@@ -90,9 +77,10 @@ const Header = () => {
         <path class="svg-fill svg-fill--hover" fill-rule="evenodd" clip-rule="evenodd" d="M121 0H93.4551V22.626H121V0ZM105.771 15.6187H97.7221C97.7221 16.283 97.9395 17.1688 98.3748 17.7223C98.9065 18.3867 99.6318 18.4974 100.164 18.4974C100.671 18.4974 101.203 18.3865 101.565 18.1375C101.614 18.1095 102.025 17.8055 102.315 17.1131L105.602 17.5009C105.119 19.2444 104.152 20.1579 103.523 20.601C102.484 21.3204 101.324 21.5145 100.115 21.5145C98.4955 21.5145 97.0696 21.1823 95.8127 19.7429C94.87 18.6633 94.1934 17.0303 94.1934 14.9818C94.1934 13.2103 94.749 11.3836 95.837 10.1102C97.1419 8.61537 98.7614 8.33873 99.9701 8.33873C101.179 8.33873 102.919 8.58771 104.248 10.1931C105.529 11.7432 105.771 13.6808 105.771 15.203V15.6184V15.6187ZM102.556 13.2381L102.556 13.2375C102.531 13.1245 102.362 12.3516 101.855 11.7987C101.469 11.3837 100.913 11.1068 100.212 11.1068C99.3174 11.1068 98.7854 11.5222 98.4471 11.9096C98.1815 12.2417 97.9395 12.6845 97.8428 13.2381H102.556ZM116.213 21.1009H119.693L119.693 21.1006V0.922256H116.213V10.1395C115.343 8.78338 114.037 8.3404 112.853 8.3404C111.379 8.3404 110.049 8.97703 109.107 10.0011C108.067 11.1359 107.415 12.8247 107.415 14.8727C107.415 16.7827 107.995 18.5541 109.107 19.8275C110.049 20.9348 111.209 21.5162 112.805 21.5162C114.714 21.5162 115.681 20.4918 116.213 19.6063V21.1009ZM110.992 14.9561C110.992 13.9597 111.33 13.157 111.838 12.6032V12.6033C112.394 11.9942 112.998 11.7729 113.699 11.7729C114.448 11.7729 115.101 12.0221 115.657 12.6864C116.068 13.1846 116.43 13.9042 116.43 14.9562C116.43 15.9802 116.044 16.7276 115.633 17.1706C115.077 17.7792 114.303 18.0838 113.651 18.0838C113.046 18.0838 112.369 17.8072 111.838 17.2258C111.33 16.6719 110.992 15.8696 110.992 14.9561Z"/>
       </svg>
     </a>`)
-    headerDOM.appendChild(headerWrapperDOM)
-    headerWrapperDOM.appendChild(Cart(filterDOM))
-    return headerDOM
+
+    headerElement.appendChild(headerWrapperElement)
+
+    return headerElement
 }
 
 export default Header
