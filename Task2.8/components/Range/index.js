@@ -37,7 +37,7 @@ const Range = () => {
     priceDOM.append(priceTitleDOM, rangeDOM, rangeValueDOM)
 
     const updateRangeValue = () => {
-        rangeValueDOM.textContent = rangeInputDOM.value;
+        rangeValueDOM.textContent = `$${rangeInputDOM.value}`;
     };
 
     const updateRangeVisuals = () => {
@@ -48,7 +48,7 @@ const Range = () => {
 
         rangeSliderLineDOM.style.width = rangeInputDOM.value + "%";
     };
-    rangeInputDOM.addEventListener("input", (e) => {
+    rangeInputDOM.addEventListener("input", () => {
         updateRangeValue();
         updateRangeVisuals();
     });

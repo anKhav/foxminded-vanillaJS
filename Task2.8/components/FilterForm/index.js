@@ -47,6 +47,7 @@ const FilterForm = (options, handlers) => {
     rangeInputDOM.addEventListener('change', (e) => {
         handlers.price(e, applyFilters(data,topics,options))
     })
+    filterDOM.addEventListener('submit', (e) => e.preventDefault())
 
     applyFilters(data,topics,options)
 

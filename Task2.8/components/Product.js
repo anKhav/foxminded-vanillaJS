@@ -1,5 +1,5 @@
 import '../styles/product.css'
-import {addToCart, getCartProducts, getSpecificProduct} from "../utils/cart.js";
+import {addToCart, getSpecificProduct} from "../utils/cart.js";
 
 export const renderButton = (product) => {
     const productButtonDOM = document.createElement('button')
@@ -77,19 +77,30 @@ export const Product = (product) => {
         const storedProduct = getSpecificProduct(product.id)
         if (storedProduct) {
             storedProduct.quantity === 10 ? productButtonDOM.disabled = true : productButtonDOM.disabled = false;
-        }
-        if (productButtonDOM.disabled) {
-            productButtonDOM.addEventListener('mouseover',addNotification)
-            productButtonDOM.addEventListener('mouseout', removeNotification)
+            if (productButtonDOM.disabled) {
+                productButtonDOM.addEventListener('mouseover',addNotification)
+                productButtonDOM.addEventListener('mouseout', removeNotification)
+                isTouchDevice() ? addNotification() : removeNotification()
+            } else {
+                productButtonDOM.removeEventListener('mouseover',addNotification)
+                productButtonDOM.removeEventListener('mouseout', removeNotification)
+                removeNotification()
+            }
         } else {
-            productButtonDOM.removeEventListener('mouseover',addNotification)
-            productButtonDOM.removeEventListener('mouseout', removeNotification)
+            removeNotification()
+            productButtonDOM.disabled = false
         }
     }
     const filter = document.querySelector('.cart-filter')
     const closeCartButton = document.querySelector('#cart-button--close')
     closeCartButton.addEventListener('click', setButtonState)
     filter.addEventListener('click', setButtonState)
+    function isTouchDevice() {
+        return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+    }
+
 
     setButtonState()
     productDOM.append(notificationElement)
