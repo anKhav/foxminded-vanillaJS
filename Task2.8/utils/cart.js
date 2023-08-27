@@ -54,8 +54,11 @@ export const decrementProductAmount = (product) => {
 
 export const getCartProducts = () => JSON.parse(localStorage.getItem('cart'))
 export const getSpecificProduct = (id) => {
-    const products =  JSON.parse(localStorage.getItem('cart')).data
-    return products.find(product => product.id === id)
+    const cart = localStorage.getItem('cart')
+    if (cart) {
+        const products =  JSON.parse(cart).data
+        return products.find(product => product.id === id)
+    }
 }
 export const removeProductFromCart = (id) => {
     const cart = JSON.parse(localStorage.getItem('cart'))

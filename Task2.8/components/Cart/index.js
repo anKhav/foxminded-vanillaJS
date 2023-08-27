@@ -40,7 +40,7 @@ const Cart = () => {
 
     const cartTotalPriceDOM = document.createElement('p')
     cartTotalPriceDOM.classList.add('cart__total-price')
-    cartTotalPriceDOM.innerText = `$${getCartProducts().totalPrice}`
+    cartTotalPriceDOM.innerText = '0'
 
     const cartButtonCheckoutDOM = document.createElement('button')
     cartButtonCheckoutDOM.classList.add('cart__button')
@@ -66,6 +66,7 @@ const Cart = () => {
         document.body.classList.add('no-scroll')
         cartContentDOM.innerHTML = ''
         cartContentDOM.append(CartProductList(handler))
+        cartTotalPriceDOM.innerText = getCartProducts() && `$${getCartProducts()?.totalPrice}`
     })
 
     cartButtonCloseDOM.addEventListener('click', closeCart)

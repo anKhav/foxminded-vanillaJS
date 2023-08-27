@@ -1,10 +1,10 @@
 const products = [
     {
         id:1,
-        title:'Title',
+        title:'Snow Fox',
         price:12,
-        topic:'Al',
-        image:'../public/fox.jpg',
+        topic:'Snow Fox',
+        image:'https://as2.ftcdn.net/v2/jpg/00/76/47/97/1000_F_76479767_gv1iIKiZ0e9K1gw8YLGx5HBAQRHufrFB.jpg',
         rating:2
     },
     {
@@ -28,7 +28,7 @@ const products = [
         title:'Dog',
         price:100,
         topic:'Fox Kids',
-        image:'https://wallpapercrafter.com/th800/128829-fox-grass-photography.jpg',
+        image:'https://i.etsystatic.com/10229826/r/il/ae9074/681301585/il_fullxfull.681301585_2vzd.jpg',
         rating:3
     },
     {

@@ -35,6 +35,10 @@ const Header = () => {
 
     const navigationLinkElements = navigationLinks.map(link => {
         const navigationLinkDOM = document.createElement('a')
+        navigationLinkDOM.addEventListener('click', (e) => {
+            e.preventDefault()
+            window.location = link.href
+        })
         navigationLinkDOM.classList.add('nav__link')
         navigationLinkDOM.setAttribute('href', link.href)
         navigationLinkDOM.innerText = link.title
