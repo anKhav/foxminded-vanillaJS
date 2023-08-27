@@ -4,8 +4,7 @@ import data from "../../data.js";
 
 const FilterForm = (options, handlers) => {
 
-    const topics = ['All','Forest', 'Fox Kids', 'Snow Fox', 'Other']
-    const labels = ['Forest', 'Fox Kids']
+    const topics = ['All','Forest','Fox Kids','Snow Fox','Other']
 
     const filterDOM = document.createElement('form')
     const topicsDOM = document.createElement('fieldset')
@@ -39,23 +38,23 @@ const FilterForm = (options, handlers) => {
 
     topicsDOM.addEventListener('click', (e) => {
         if (e.target.dataset.filter === 'topic') {
-            handlers.topic(e,applyFilters(data,labels,options))
+            handlers.topic(e,applyFilters(data,topics,options))
         }
     })
     inputDOM.addEventListener('input', (e) => {
-        handlers.search(e, applyFilters(data,labels,options))
+        handlers.search(e, applyFilters(data,topics,options))
     })
     rangeInputDOM.addEventListener('change', (e) => {
-        handlers.price(e, applyFilters(data,labels,options))
+        handlers.price(e, applyFilters(data,topics,options))
     })
 
-    applyFilters(data,labels,options)
+    applyFilters(data,topics,options)
 
     filterDOM.appendChild(topicsDOM)
     rangeDOM.appendChild(priceDOM)
     filterDOM.appendChild(rangeDOM)
 
 
-    return {filterDOM, filteredItems:applyFilters(data,labels,options)}
+    return {filterDOM, filteredItems:applyFilters(data,topics,options)}
 }
 export default FilterForm

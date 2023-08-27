@@ -36,6 +36,13 @@ export const Product = (product) => {
 
 
     const filter = document.querySelector('.cart-filter')
+    const closeCartButton = document.querySelector('#cart-button--close')
+    closeCartButton.addEventListener('click', () => {
+        const stored = getSpecificProduct(product.id)
+        if (stored) {
+            productButtonDOM.disabled = stored.quantity === 10;
+        }
+    })
     filter.addEventListener('click', () => {
         const stored = getSpecificProduct(product.id)
         if (stored) {
@@ -63,11 +70,7 @@ export const Product = (product) => {
     const addProductToCart = async () => {
         await addToCart({...product, quantity:1})
         const storedProduct = getSpecificProduct(product.id)
-        if (storedProduct.quantity === 10) {
-            productButtonDOM.disabled = true
-        } else {
-            productButtonDOM.disabled = false
-        }
+        productButtonDOM.disabled = storedProduct.quantity === 10;
     }
 
     productButtonDOM.addEventListener('click', async () => {
@@ -76,7 +79,9 @@ export const Product = (product) => {
 
     const setButtonState = () => {
         const storedProduct = getSpecificProduct(product.id)
-        productButtonDOM.disabled = storedProduct?.quantity === 10
+        if (storedProduct) {
+            productButtonDOM.disabled = storedProduct.quantity === 10;
+        }
     }
     setButtonState()
     return productDOM
