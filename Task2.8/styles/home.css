@@ -13,7 +13,7 @@
 .main-screen__title{
     margin-top: 250px;
     color: #FFF;
-    font-family: Playfair Display;
+    font-family: Playfair Display, sans-serif;
     font-size: 60px;
     font-style: normal;
     font-weight: 700;
@@ -21,7 +21,7 @@
 }
 .main-screen__subtitle{
     color: #FFF;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -52,7 +52,7 @@
 }
 .food__tag{
     color: #969595;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -61,7 +61,7 @@
 }
 .food__title{
     color: #000;
-    font-family: Playfair Display;
+    font-family: Playfair Display, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -76,7 +76,7 @@
     background-color: #CC5520;
     color: #FFF;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -110,7 +110,7 @@
 .newsletter__title{
     color: black;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -120,7 +120,7 @@
 .newsletter__text{
     color: #000;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -139,7 +139,7 @@
     width: 100%;
     padding: 20px 15px;
     color: #000;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -148,7 +148,7 @@
 }
 .newsletter .form__input::placeholder{
     color: #9D9D9D;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -161,7 +161,7 @@
     border: 1px solid black;
     color: #FFF;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;

@@ -21,12 +21,12 @@ const CartProduct = (product, handler) => {
     cartProductControlsWrapperDOM.classList.add('product-controls__quantity-wrapper')
 
     const decrementButtonDOM = document.createElement('button')
-    decrementButtonDOM.classList.add('product-controls__decrement')
+    decrementButtonDOM.classList.add('product-control')
     decrementButtonDOM.innerText = '-'
     decrementButtonDOM.disabled = stored.quantity <= 1
 
     const incrementButtonDOM = document.createElement('button')
-    incrementButtonDOM.classList.add('product-controls__increment')
+    incrementButtonDOM.classList.add('product-control')
     incrementButtonDOM.innerText = '+'
     incrementButtonDOM.disabled = stored.quantity === 10
 

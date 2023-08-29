@@ -44,7 +44,7 @@
 .item__button .cross{
     color: inherit;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 33px;
     line-height: 100%;
     font-style: normal;
@@ -53,7 +53,7 @@
 .item__button .add{
     color: inherit;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
@@ -71,24 +71,14 @@
     align-items: center;
     gap: 17px;
     color: #000;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
 }
-
-.item__title {
-}
-
 .item__price {
     font-weight: 600;
-}
-
-.item__rating {
-}
-
-.star {
 }
 
 .item__topic {
@@ -103,9 +93,9 @@
     right: 0;
     background-color: #dadada;
     padding: 10px;
-    -webkit-box-shadow: 8px 0px 32px 0px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 8px 0px 32px 0px rgba(66, 68, 90, 1);
-    box-shadow: 8px 0px 32px 0px rgba(66, 68, 90, 1);
+    -webkit-box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
+    box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
     z-index: 100;
     border-radius: 10px;
     transition: .4s;
