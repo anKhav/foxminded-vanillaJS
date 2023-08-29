@@ -60,22 +60,6 @@
     transition:all .4s;
     cursor: pointer;
 }
-
-.product-control{
-    opacity: .4;
-    font-size: 24px;
-    padding: 10px;
-    transition: .4s;
-    font-weight: bold;
-}
-.product-control:hover{
-    opacity: 1;
-    transition:all .4s;
-    cursor: pointer;
-}
 .product-control:disabled{
     opacity: .1;
  }
-.product-control:disabled{
-    opacity: .1;
-}
