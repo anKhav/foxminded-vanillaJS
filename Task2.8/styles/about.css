@@ -1,0 +1,113 @@
+.history{
+    margin-top: 27px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.history__header{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #E6E6E6;
+}
+.history__subtitle{
+    color: #969595;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+}
+.history__title{
+    color: #000;
+    font-family: Playfair Display;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 60px;
+}
+
+.history__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 26px 0;
+}
+
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.story__content {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.story__title {
+    color: #000;
+    font-family: Playfair Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+}
+
+.story__text {
+    color: #484848;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    letter-spacing: 1px;
+}
+
+.story__image {
+    width: 100vw;
+    overflow: hidden;
+}
+.story__image img{
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .history{
+        margin-top: 102px;
+    }
+    .history__header{
+        padding: 52px 20px;
+        gap: 14px;
+    }
+    .history__content{
+        padding: 110px 20px;
+        gap: 67px;
+    }
+    .story{
+        flex-direction: row;
+        gap: 50px;
+    }
+    .story__image{
+        width: 45%;
+    }
+    .story:nth-child(2) .story__content{
+    order: 2;
+    }
+    .story:nth-child(2) .story__image{
+        order: 1;
+    }
+}
