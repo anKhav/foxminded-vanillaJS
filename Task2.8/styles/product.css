@@ -1,0 +1,108 @@
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+    position: relative;
+}
+
+.item__image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    position: relative;
+    border-radius: 7px;
+    overflow: visible;
+}
+.item__image img{
+    width: 100%;
+    height: 100%;
+}
+
+.item__button {
+    min-width: 46px;
+    min-height: 46px;
+    padding: 7px 14px;
+    position: absolute;
+    right: 17px;
+    top: 17px;
+    color: #FFF;
+    background-color: #CC5520;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .4s;
+}
+.item__button:disabled{
+    background-color: #77767E;
+}
+.item__button:disabled:hover{
+    background-color:#77767E;
+    color: white;
+    cursor: not-allowed;
+}
+.item__button .cross{
+    color: inherit;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 33px;
+    line-height: 100%;
+    font-style: normal;
+    font-weight: 600;
+}
+.item__button .add{
+    color: inherit;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+}
+.item__button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #CC5520;
+    transition: all .4s;
+}
+
+.item__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 17px;
+    color: #000;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+.item__price {
+    font-weight: 600;
+}
+
+.item__topic {
+    color: #969595;
+    font-weight: 400;
+}
+.notification {
+    opacity: 0;
+    position: absolute;
+    width: auto;
+    top: -20px;
+    right: 0;
+    background-color: #dadada;
+    padding: 10px;
+    -webkit-box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
+    box-shadow: 8px 0 32px 0 rgba(66, 68, 90, 1);
+    z-index: 100;
+    border-radius: 10px;
+    transition: .4s;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+.notification--open{
+    opacity: 1;
+    transition: .4s;
+}
